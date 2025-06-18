@@ -72,7 +72,7 @@
     <button type="submit">Add Equipment</button>
   </form>
 
-  <a class="back-link" href="equipment-list.html">⬅️ Back to Equipment List</a>
+  <a class="back-link" href="equipment.html">⬅️ Back to Equipment List</a>
 
   <script>
     document.getElementById('equipmentForm').addEventListener('submit', function(e) {
@@ -107,7 +107,7 @@
       localStorage.setItem('equipmentList', JSON.stringify(existing));
 
       alert("Equipment added!");
-      location.href = "equipment-list.html";
+      location.href = "equipment.html";
     });
   </script>
 </body>
