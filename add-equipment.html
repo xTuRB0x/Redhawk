@@ -3,76 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <title>Add Equipment</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 1rem;
-      background: #f7f7f7;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    h1 {
-      text-align: center;
-    }
-    label {
-      display: block;
-      margin-top: 1rem;
-    }
-    input {
-      width: 100%;
-      padding: 8px;
-      margin-top: 4px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    button {
-      margin-top: 1.5rem;
-      width: 100%;
-      padding: 10px;
-      font-size: 1rem;
-      background-color: #007BFF;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    .back-link {
-      display: block;
-      text-align: center;
-      margin-top: 1.5rem;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h1>Add Equipment</h1>
-  <form id="equipmentForm">
-    <label for="year">Year</label>
-    <input type="text" id="year" required>
+  <header>
+    <h1>Add Equipment</h1>
+  </header>
+  <main class="card">
+    <form id="equipmentForm" class="form">
+      <div class="form-group">
+        <label for="year">Year</label>
+        <input type="text" id="year" required>
+      </div>
 
-    <label for="makeModel">Make/Model</label>
-    <input type="text" id="makeModel" required>
+      <div class="form-group">
+        <label for="makeModel">Make/Model</label>
+        <input type="text" id="makeModel" required>
+      </div>
 
-    <label for="unitID">Unit ID (optional)</label>
-    <input type="text" id="unitID">
+      <div class="form-group">
+        <label for="unitID">Unit ID (optional)</label>
+        <input type="text" id="unitID">
+      </div>
 
-    <label for="vinSerial">VIN / Serial Number</label>
-    <input type="text" id="vinSerial" required>
+      <div class="form-group">
+        <label for="vinSerial">VIN / Serial Number</label>
+        <input type="text" id="vinSerial" required>
+      </div>
 
-    <label for="currentHours">Current Hours (optional)</label>
-    <input type="number" id="currentHours" min="0">
+      <div class="form-group">
+        <label for="currentHours">Current Hours (optional)</label>
+        <input type="number" id="currentHours" min="0">
+      </div>
 
-    <label for="currentMiles">Current Miles (optional)</label>
-    <input type="number" id="currentMiles" min="0">
+      <div class="form-group">
+        <label for="currentMiles">Current Miles (optional)</label>
+        <input type="number" id="currentMiles" min="0">
+      </div>
 
-    <button type="submit">Add Equipment</button>
-  </form>
+      <button type="submit" class="primary-button">Add Equipment</button>
+    </form>
 
-  <a class="back-link" href="equipment.html">⬅️ Back to Equipment List</a>
+    <div class="actions">
+      <a class="secondary-button" href="equipment.html">⬅️ Back to Equipment List</a>
+    </div>
+  </main>
 
   <script>
     document.getElementById('equipmentForm').addEventListener('submit', function(e) {
