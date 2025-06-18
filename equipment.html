@@ -5,12 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Equipment List</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      padding: 1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+    }
+
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #444;
+    }
+
+    .actions {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .actions button {
+      font-size: 1rem;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+    }
+
+    @media (max-width: 480px) {
+      table thead {
+        display: none;
+      }
+
+      table tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 0.75rem;
+        background-color: #222;
+      }
+
+      table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+        border: none;
+      }
+
+      table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
     <h1>Equipment List</h1>
   </header>
-  <main class="card">
+  <main class="card container">
     <table>
       <thead>
         <tr>
@@ -40,12 +106,12 @@
     equipmentList.forEach(eq => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td><span class="status ${eq.status}"></span></td>
-        <td>${eq.year || ''}</td>
-        <td>${eq.name}</td>
-        <td>${eq.unit || ''}</td>
-        <td>${eq.vin}</td>
-        <td><a href="logs/${eq.id}.html">View Log</a></td>
+        <td data-label="Status"><span class="status ${eq.status}"></span></td>
+        <td data-label="Year">${eq.year || ''}</td>
+        <td data-label="Make & Model">${eq.name}</td>
+        <td data-label="Unit ID">${eq.unit || ''}</td>
+        <td data-label="VIN / Serial">${eq.vin}</td>
+        <td data-label="Log"><a href="logs/${eq.id}.html">View Log</a></td>
       `;
       table.appendChild(tr);
     });
