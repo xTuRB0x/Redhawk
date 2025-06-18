@@ -1,11 +1,115 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Equipment List</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      margin-bottom: 1rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+    .status {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .green { background-color: #2ecc71; }
+    .yellow { background-color: #f1c40f; }
+    .red { background-color: #e74c3c; }
+    .actions {
+      margin-top: 2rem;
+    }
+    .actions button {
+      margin-right: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #3498db;
+      color: white;
+      cursor: pointer;
+    }
+    .actions button:hover {
+      background-color: #2980b9;
+    }
+  </style>
 </head>
 <body>
-  <h1>Equipment List</h1>
-  <p>This is where your equipment will be listed.</p>
-  <a href="index.html">⬅️ Back to Home</a>
+  <header>
+    <h1>Equipment List</h1>
+  </header>
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Year</th>
+          <th>Make & Model</th>
+          <th>Unit ID</th>
+          <th>VIN / Serial</th>
+          <th>Log</th>
+        </tr>
+      </thead>
+      <tbody id="equipment-table">
+        <!-- Equipment rows will be injected here -->
+      </tbody>
+    </table>
+
+    <div class="actions">
+      <button onclick="location.href='add-equipment.html'">➕ Add Equipment</button>
+      <button onclick="location.href='index.html'">⬅️ Back to Home</button>
+    </div>
+  </main>
+  <script src="data.js"></script>
+  <script>
+    const table = document.getElementById('equipment-table');
+
+    equipmentList.forEach(eq => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><span class="status ${eq.status}"></span></td>
+        <td>${eq.year || ''}</td>
+        <td>${eq.name}</td>
+        <td>${eq.unit || ''}</td>
+        <td>${eq.vin}</td>
+        <td><a href="logs/${eq.id}.html">View Log</a></td>
+      `;
+      table.appendChild(tr);
+    });
+  </script>
 </body>
 </html>
