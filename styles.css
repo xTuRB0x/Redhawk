@@ -50,3 +50,46 @@ h1 {
   font-size: 0.9rem;
   color: #888;
 }
+
+/* Already used in Minimal Bold Dark Mode, just make sure you have: */
+
+main.card {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #1c1c1c;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+.actions {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.actions button {
+  margin: 0 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.actions button:hover {
+  background-color: #2980b9;
+}
+
+.status {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.green { background-color: #2ecc71; }
+.yellow { background-color: #f1c40f; }
+.red { background-color: #e74c3c; }
