@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Add Equipment</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 1rem;
+      background: #f7f7f7;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      margin-top: 1.5rem;
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Add Equipment</h1>
+  <form id="equipmentForm">
+    <label for="year">Year</label>
+    <input type="text" id="year" required>
+
+    <label for="makeModel">Make/Model</label>
+    <input type="text" id="makeModel" required>
+
+    <label for="unitID">Unit ID (optional)</label>
+    <input type="text" id="unitID">
+
+    <label for="vinSerial">VIN / Serial Number</label>
+    <input type="text" id="vinSerial" required>
+
+    <label for="currentHours">Current Hours (optional)</label>
+    <input type="number" id="currentHours" min="0">
+
+    <label for="currentMiles">Current Miles (optional)</label>
+    <input type="number" id="currentMiles" min="0">
+
+    <button type="submit">Add Equipment</button>
+  </form>
+
+  <a class="back-link" href="equipment-list.html">⬅️ Back to Equipment List</a>
+
+  <script>
+    document.getElementById('equipmentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const year = document.getElementById('year').value.trim();
+      const makeModel = document.getElementById('makeModel').value.trim();
+      const unitID = document.getElementById('unitID').value.trim();
+      const vinSerial = document.getElementById('vinSerial').value.trim();
+      const currentHours = parseInt(document.getElementById('currentHours').value) || 0;
+      const currentMiles = parseInt(document.getElementById('currentMiles').value) || 0;
+
+      if (!year || !makeModel || !vinSerial) {
+        alert("Please fill out all required fields.");
+        return;
+      }
+
+      const newEquipment = {
+        year,
+        makeModel,
+        unitID,
+        vinSerial,
+        currentHours,
+        currentMiles,
+        lastServiceHours: currentHours,
+        lastServiceMiles: currentMiles,
+        maintenanceLog: []
+      };
+
+      const existing = JSON.parse(localStorage.getItem('equipmentList') || '[]');
+      existing.push(newEquipment);
+      localStorage.setItem('equipmentList', JSON.stringify(existing));
+
+      alert("Equipment added!");
+      location.href = "equipment-list.html";
+    });
+  </script>
+</body>
+</html>
